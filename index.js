@@ -14,9 +14,7 @@ const app=express()
 
 const allowedOrigins = [
     'http://localhost:5173',         // for local dev
-    'https://sirusy.onrender.com',   // Render domain
-    'https://sirusy.com',            // Custom domain
-    'https://www.sirusy.com'        // www version
+    'https://adab.onrender.com',   // Render domain
   ];
   
   app.use(cors({
