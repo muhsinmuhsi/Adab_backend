@@ -1,4 +1,3 @@
-import { apperror } from "../utils/apperror";
 import  Jwt  from "jsonwebtoken";
 import dotenv from 'dotenv';
 
