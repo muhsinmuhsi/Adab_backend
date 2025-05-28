@@ -21,6 +21,7 @@ const upload = multer({
 
 // Updated middleware for multiple images
 const uploadImage = (req, res, next) => {
+  
   upload.array('images')(req, res, async (error) => {
     if (error) {
       return res.status(400).json({ message: "File upload failed", error });

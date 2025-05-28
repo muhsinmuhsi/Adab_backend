@@ -1,26 +1,46 @@
 import product from "../Models/products.js";
 
 export const adminAddProduct = async (req, res) => {
+  console.log('lllll');
+  
+  try {
     const result = req.body;
     console.log('Admin add product:', result);
-  
-    if (!result) {
-      return res.status(403).json({ message: "Missing required fields" });
+
+    // Check for required fields
+    const requiredFields = ['title', 'description', 'price', 'category', 'quantity'];
+    const missingFields = requiredFields.filter(field => !result[field]);
+
+    if (missingFields.length > 0) {
+      return res.status(400).json({
+        message: `Missing required fields: ${missingFields.join(', ')}`
+      });
     }
-  
+
+    // Create new product instance
     const newProduct = new product({
       title: result.title,
       description: result.description,
       price: result.price,
       category: result.category,
       quantity: result.quantity,
-      images: req.cloudinaryImageUrls || [], // <-- store multiple images
+      images: req.cloudinaryImageUrls || [], // Optional, fallback to empty array
     });
-  
+
+    // Save product to the database
     await newProduct.save();
-  
-    return res.status(200).json({ message: 'Product added successfully' });
-  };
+
+    return res.status(201).json({ message: 'Product added successfully' });
+  } catch (error) {
+    console.error('Error adding product:', error);
+
+    return res.status(500).json({
+      message: 'Internal server error',
+      error: error.message
+    });
+  }
+};
+
   
    
 

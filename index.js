@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import ProductRoute from './routes/ProductRoutes.js'
 import adminRoute from './routes/adminRoutes.js'
 import cors from 'cors'
+import cookieParser from 'cookie-parser';
 
 
 dotenv.config();
@@ -27,6 +28,8 @@ const allowedOrigins = [
     },
     credentials: true // if using cookies or sessions
   }));
+
+  app.use(cookieParser());
 
 app.use(express.json());
 

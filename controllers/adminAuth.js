@@ -4,7 +4,6 @@ import jwt from 'jsonwebtoken';
 config()
 
 export const Login=async(req,res,next)=>{
-    console.log('adminlogin reached');
     
     try {
         const { email, password } = req.body;
