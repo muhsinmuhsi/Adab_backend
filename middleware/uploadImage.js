@@ -46,6 +46,7 @@ const uploadImage = (req, res, next) => {
         req.cloudinaryImageUrls = imageUrls; // Set array of URLs
         next();
       } catch (err) {
+        console.log("cloudinary error:",err);
         return res.status(500).json({ message: "Cloudinary upload failed", error: err });
       }
     } else {  
