@@ -16,7 +16,7 @@ const storage = multer.memoryStorage();
 
 const upload = multer({
   storage,
-  limits: { fileSize: 20000000 }, // 20MB (2GB is too large and dangerous!)
+  limits: { fileSize: 5 * 1024 * 1024 } // 5MB
 });
 
 // Updated middleware for multiple images
@@ -48,7 +48,7 @@ const uploadImage = (req, res, next) => {
       } catch (err) {
         return res.status(500).json({ message: "Cloudinary upload failed", error: err });
       }
-    } else {
+    } else {  
       next();
     }
   });

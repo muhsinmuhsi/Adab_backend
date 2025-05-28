@@ -1,7 +1,6 @@
 import product from "../Models/products.js";
 
 export const adminAddProduct = async (req, res) => {
-  console.log('lllll');
   
   try {
     const result = req.body;
